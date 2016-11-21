@@ -10,7 +10,7 @@ $breakpoint-tablet:		50em;
 $breakpoint-desktop:	70em;
 
 $color-green-85: #ffc336;
-$color-green-72: #ffc336:
+$color-green-72: #ffc336;
 
 $color-yellow-100:	#FFC336;
 
@@ -597,7 +597,7 @@ body {
 			&:focus {
 				background: $color-gray-90;
 			}
-			
+
 			i:before {
 				margin: auto;
 			}
@@ -1248,7 +1248,7 @@ body {
 			.inner {
 				background: $color-gray-15;
 				color: $color-gray-65;
-				
+
 				&:after {
 					content: '';
 					position: absolute;
@@ -1467,7 +1467,7 @@ body {
 			&:focus {
 
 			}
-			
+
 			&:before {
 				margin: auto;
 			}
@@ -1633,7 +1633,7 @@ body {
 					@media only screen and (max-width: $breakpoint-phone) {
 						font-size: 1.5em;
 					}
-					
+
 					&:before {
 						margin: auto;
 					}

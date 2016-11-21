@@ -1,14 +1,14 @@
+<link rel="import" href="/assets/components/kano-nav-bar/kano-nav-bar.html">
+<link rel="import" href="/assets/components/kano-primary-links/kano-primary-links.html">
+<link rel="import" href="/assets/components/kano-secondary-links/kano-secondary-links.html">
+<link rel="import" href="/assets/components/iron-image/iron-image.html">
 <div id="menu" data-target="menu">
-	<div class="menu-header">
-		<span class="menu-label">Menu</span>
-		<a class="menu-close" data-action="menu" data-target="menu"></a>
-	</div>
-	<ul class="menu-list">
-		{{#foreach navigation}}
-		<li class="menu-list-item">
-			<a class="{{slug}}{{#if current}} current{{/if}}" href="{{url absolute="true"}}">{{label}}</a>
-		</li>
-		{{/foreach}}
-	</ul>
+  <kano-nav-bar assets-path="/assets/images/kano-nav-bar/">
+      <kano-primary-links
+        current-site="http://blog.kano.me"
+        slot="primary"></kano-primary-links>
+      <kano-secondary-links
+        current-site="http://blog.kano.me"
+        slot="secondary"></kano-secondary-links>
+  </kano-nav-bar>
 </div>
-<div class="overlay"></div>

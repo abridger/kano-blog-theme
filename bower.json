@@ -1,5 +1,11 @@
 {
   "name": "bleak",
+  "dependencies": {
+    "kano-nav-bar": "abridger/kano-nav-bar#unified-navigation",
+    "kano-primary-links": "abridger/kano-primary-links",
+    "kano-secondary-links": "abridger/kano-secondary-links",
+    "iron-image": "PolymerElements/iron-image#^1.2.5"
+  },
   "devDependencies": {
     "fitvids": "~1.1.0",
     "highlightjs": "~8.8.0",
