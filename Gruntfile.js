@@ -174,6 +174,9 @@ module.exports = function(grunt) {
                 files: '<%=  config.jsSrcDir %>/**/*.js',
                 tasks: ['uglify:devlight']
             }
+        },
+        zip: {
+            'kano-blog-theme.zip': ['**']
         }
     });
 
@@ -183,7 +186,8 @@ module.exports = function(grunt) {
         'cssmin:dist',
         'postcss',
         'copy:dist',
-        'uglify:dist'
+        'uglify:dist',
+        'zip'
     ]);
     grunt.registerTask('default', [
         'sass:dev',
