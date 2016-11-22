@@ -1,242 +1,241 @@
 jQuery(function($) {
 
-  var html = $('html');
-  var body = $('body');
+	var html = $('html');
+	var body = $('body');
 
-  /* ==========================================================================
-     Masonry
-     ========================================================================== */
+	/* ==========================================================================
+	   Masonry
+	   ========================================================================== */
 
-  function grid() {
-    $('.post-list .post .post-image img').each(function() {
-      var img = $(this);
-      img.load(function() {
-        img.parents('.post-image').css({
-          'height' : '0',
-          'padding-bottom' : 100 / img.width() * img.height() + '%'
-        });
-      });
-      });
-    var postlist = $('.post-list').masonry({
-      itemSelector      : '.post',
-      isAnimated        : false,
-      gutter          : 0,
-      columnWidth        : 1,
-      transitionDuration    : 0
-    }).imagesLoaded().always(function() {
-      postlist.masonry('layout');
-    });
-  }
-  grid();
+	function grid() {
+		$('.post-list .post .post-image img').each(function() {
+			var img = $(this);
+			img.load(function() {
+				img.parents('.post-image').css({
+					'height' : '0',
+					'padding-bottom' : 100 / img.width() * img.height() + '%'
+				});
+			});
+	    });
+		var postlist = $('.post-list').masonry({
+			itemSelector			: '.post',
+			isAnimated				: false,
+			gutter					: 0,
+			columnWidth				: 1,
+			transitionDuration		: 0
+		}).imagesLoaded().always(function() {
+			postlist.masonry('layout');
+		});
+	}
+	grid();
 
-  /* ==========================================================================
-     Run Highlight
-     ========================================================================== */
+	/* ==========================================================================
+	   Run Highlight
+	   ========================================================================== */
 
-  function highlight() {
-    $('pre code').each(function(i, e) {
-      hljs.highlightBlock(e);
-      var code = $(this);
-      var lines = code.html().split(/\n/).length;
-      var numbers = [];
-      for (i = 1; i < lines; i++) {
-        numbers += '<span class="line">' + i + '</span>';
-      }
-      code.parent().addClass('codeblock').append('<div class="lines">' + numbers + '</div>');
-    });
-  }
-  highlight();
+	function highlight() {
+		$('pre code').each(function(i, e) {
+			hljs.highlightBlock(e);
+			var code = $(this);
+			var lines = code.html().split(/\n/).length;
+			var numbers = [];
+			for (i = 1; i < lines; i++) {
+				numbers += '<span class="line">' + i + '</span>';
+			}
+			code.parent().addClass('codeblock').append('<div class="lines">' + numbers + '</div>');
+		});
+	}
+	highlight();
 
-  /* ==========================================================================
-     Fitvids
-     ========================================================================== */
+	/* ==========================================================================
+	   Fitvids
+	   ========================================================================== */
 
-  function video() {
-    $('#wrapper').fitVids();
-  }
-  video();
+	function video() {
+		$('#wrapper').fitVids();
+	}
+	video();
 
-  /* ==========================================================================
-     Initialize and load Disqus
-     ========================================================================== */
+	/* ==========================================================================
+	   Initialize and load Disqus
+	   ========================================================================== */
 
-  function comments() {
-    if (typeof disqus === 'undefined' || !document.getElementById('disqus_thread')) {
-      $('.post-comments').css({
-        'display' : 'none'
-      });
-    } else {
-      if (window.DISQUS) {
-        return DISQUS.reset({
-          reload: true,
-          config: function () {
-            this.page.identifier = location.pathname;
-            this.page.url = location.origin + location.pathname;
-          }
-        });
-      }
+	function comments() {
+		if (typeof disqus === 'undefined' || !document.getElementById('disqus_thread')) {
+			$('.post-comments').css({
+				'display' : 'none'
+			});
+		} else {
+			if (window.DISQUS) {
+				return DISQUS.reset({
+					reload: true,
+					config: function () {
+						this.page.identifier = location.pathname;
+						this.page.url = location.origin + location.pathname;
+					}
+				});
+			}
 
-      $.ajax({
-        type: "GET",
-        url: "//" + disqus + ".disqus.com/embed.js",
-        dataType: "script",
-        cache: true
-      });
-    }
-  }
-  comments();
+			$.ajax({
+				type: "GET",
+				url: "//" + disqus + ".disqus.com/embed.js",
+				dataType: "script",
+				cache: true
+			});
+		}
+	}
+	comments();
 
-  /* ==========================================================================
-     Reading Time
-     ========================================================================== */
+	/* ==========================================================================
+	   Reading Time
+	   ========================================================================== */
 
-  function readingTime() {
-    // Don't execute on the front page
-    if (location.pathname === '/') {
-      return;
-    }
+	function readingTime() {
+		// Don't execute on the front page
+		if (location.pathname === '/') {
+			return;
+		}
 
-    var post = body.find('article');
-    var postReadingTime = post.find('.post-reading-time');
+		var post = body.find('article');
+		var postReadingTime = post.find('.post-reading-time');
 
-    post.readingTime({
-      readingTimeTarget: postReadingTime.find('.estimated-reading-time'),
-      wordCountTarget: postReadingTime.find('.word-count'),
-      error: function () {
-        postReadingTime.find('.post-reading-time').remove();
-      }
-    });
-  }
-  readingTime();
+		post.readingTime({
+			readingTimeTarget: postReadingTime.find('.estimated-reading-time'),
+			wordCountTarget: postReadingTime.find('.word-count'),
+			error: function () {
+				postReadingTime.find('.post-reading-time').remove();
+			}
+		});
+	}
+	readingTime();
 
-  /* ==========================================================================
-     Reload all scripts after AJAX load
-     ========================================================================== */
+	/* ==========================================================================
+	   Reload all scripts after AJAX load
+	   ========================================================================== */
 
-  function reload() {
-    grid();
-    ajaxLinkClass();
-    highlight();
-    video();
-    comments();
-    currentMenuFix();
-    readingTime();
-  }
+	function reload() {
+		grid();
+		ajaxLinkClass();
+		highlight();
+		video();
+		comments();
+		readingTime();
+	}
 
-  /* ==========================================================================
-     Add class for ajax loading
-     ========================================================================== */
+	/* ==========================================================================
+	   Add class for ajax loading
+	   ========================================================================== */
 
-  function ajaxLinkClass() {
+	function ajaxLinkClass() {
 
-    $('a[href^="' + window.location.origin + '"], .post-image a, .post-title a, .post-more a, .post-meta a, .post-tags a, #pagination a').each(function() {
-      var link = $(this);
+		$('a[href^="' + window.location.origin + '"], .post-image a, .post-title a, .post-more a, .post-meta a, .post-tags a, #pagination a').each(function() {
+			var link = $(this);
 
-      if(!link.hasClass('rss')) {
-        link.addClass('js-ajax-link');
+			if(!link.hasClass('rss')) {
+				link.addClass('js-ajax-link');
 
-        if (link.attr('href').indexOf('page') > -1) {
-          link.addClass('js-archive-index');
-        }
+				if (link.attr('href').indexOf('page') > -1) {
+					link.addClass('js-archive-index');
+				}
 
-        if (link.attr('href') == window.location.origin) {
-          link.addClass('js-show-index');
-        }
+				if (link.attr('href') == window.location.origin) {
+					link.addClass('js-show-index');
+				}
 
-        if (link.attr('href').indexOf('tag') > -1) {
-          link.addClass('js-tag-index');
-        }
+				if (link.attr('href').indexOf('tag') > -1) {
+					link.addClass('js-tag-index');
+				}
 
-        if (link.attr('href').indexOf('author') > -1) {
-          link.addClass('js-author-index');
-        }
-      }
-    });
-  }
-  ajaxLinkClass();
+				if (link.attr('href').indexOf('author') > -1) {
+					link.addClass('js-author-index');
+				}
+			}
+		});
+	}
+	ajaxLinkClass();
 
-  /* ==========================================================================
-     Ajax Loading
-     ========================================================================== */
+	/* ==========================================================================
+	   Ajax Loading
+	   ========================================================================== */
 
-  var History = window.History;
-  var loading = false;
-  var ajaxContainer = $('#ajax-container');
+	var History = window.History;
+	var loading = false;
+	var ajaxContainer = $('#ajax-container');
 
-  if (!History.enabled) {
-    return false;
-  }
+	if (!History.enabled) {
+		return false;
+	}
 
-  History.Adapter.bind(window, 'statechange', function() {
-    html.addClass('loading');
-    var State = History.getState();
-    $.get(State.url, function(result) {
-      var $html = $(result);
-      var newContent = $('#ajax-container', $html).contents();
-      var title = result.match(/<title>(.*?)<\/title>/)[1];
+	History.Adapter.bind(window, 'statechange', function() {
+		html.addClass('loading');
+		var State = History.getState();
+		$.get(State.url, function(result) {
+			var $html = $(result);
+			var newContent = $('#ajax-container', $html).contents();
+			var title = result.match(/<title>(.*?)<\/title>/)[1];
 
-      ajaxContainer.fadeOut(500, function() {
-        if(html.hasClass('push-next')) {
-          html.removeClass('push-next');
-          html.addClass('pushed-next');
-        }
-        if(html.hasClass('push-prev')) {
-          html.removeClass('push-prev');
-          html.addClass('pushed-prev');
-        }
-        document.title = $('<textarea/>').html(title).text();
-        ajaxContainer.html(newContent);
-        body.removeClass();
-        body.addClass($('#body-class').attr('class'));
-        NProgress.done();
-        ajaxContainer.fadeIn(500);
-        $(document).scrollTop(0);
-        setTimeout(function() {
-          html.removeClass('loading');
-        }, 50);
-        reload();
-        loading = false;
-      });
-    });
-  });
-  $('body').on('click', '.js-ajax-link', function(e) {
-      e.preventDefault();
+			ajaxContainer.fadeOut(500, function() {
+				if(html.hasClass('push-next')) {
+					html.removeClass('push-next');
+					html.addClass('pushed-next');
+				}
+				if(html.hasClass('push-prev')) {
+					html.removeClass('push-prev');
+					html.addClass('pushed-prev');
+				}
+				document.title = $('<textarea/>').html(title).text();
+				ajaxContainer.html(newContent);
+				body.removeClass();
+				body.addClass($('#body-class').attr('class'));
+				NProgress.done();
+				ajaxContainer.fadeIn(500);
+				$(document).scrollTop(0);
+				setTimeout(function() {
+					html.removeClass('loading');
+				}, 50);
+				reload();
+				loading = false;
+			});
+		});
+	});
+	$('body').on('click', '.js-ajax-link', function(e) {
+	    e.preventDefault();
 
-    var link = $(this);
+		var link = $(this);
 
-    if(link.hasClass('post-nav-item') || link.hasClass('pagination-item')) {
-      if(link.hasClass('post-nav-next') || link.hasClass('pagination-next')) {
-        html.removeClass('pushed-prev');
-        html.addClass('push-next');
-      }
-      if(link.hasClass('post-nav-prev') || link.hasClass('pagination-prev')) {
-        html.removeClass('pushed-next');
-        html.addClass('push-prev');
-      }
-    } else {
-      html.removeClass('pushed-next');
-      html.removeClass('pushed-prev');
-    }
+		if(link.hasClass('post-nav-item') || link.hasClass('pagination-item')) {
+			if(link.hasClass('post-nav-next') || link.hasClass('pagination-next')) {
+				html.removeClass('pushed-prev');
+				html.addClass('push-next');
+			}
+			if(link.hasClass('post-nav-prev') || link.hasClass('pagination-prev')) {
+				html.removeClass('pushed-next');
+				html.addClass('push-prev');
+			}
+		} else {
+			html.removeClass('pushed-next');
+			html.removeClass('pushed-prev');
+		}
 
-      if (loading === false) {
-      var currentState = History.getState();
-      var url = $(this).prop('href');
-      var title = $(this).attr('title') || null;
+	    if (loading === false) {
+			var currentState = History.getState();
+			var url = $(this).prop('href');
+			var title = $(this).attr('title') || null;
 
-          if (url.replace(/\/$/, "") !== currentState.url.replace(/\/$/, "")) {
-        loading = true;
-        html.addClass('loading');
-        NProgress.start();
-        History.pushState({}, title, url);
-          }
-      }
-  });
+	        if (url.replace(/\/$/, "") !== currentState.url.replace(/\/$/, "")) {
+				loading = true;
+				html.addClass('loading');
+				NProgress.start();
+				History.pushState({}, title, url);
+	        }
+	    }
+	});
 
-  $('body').on('click', '#post-index .post .js-ajax-link', function() {
-    var post = $(this).parents('.post');
-    post.addClass('initial');
-    setTimeout(function() {
-      post.addClass('active');
-    }, 1);
-  });
+	$('body').on('click', '#post-index .post .js-ajax-link', function() {
+		var post = $(this).parents('.post');
+		post.addClass('initial');
+		setTimeout(function() {
+			post.addClass('active');
+		}, 1);
+	});
 });

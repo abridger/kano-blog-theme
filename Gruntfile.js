@@ -12,7 +12,6 @@ module.exports = function(grunt) {
             'jsSrcDir': 'src/js',
             'jsTargetDir': 'js',
             'jsDependencies': [
-                'bower_components/webcomponentsjs/webcomponents.js',
                 'bower_components/jquery/dist/jquery.min.js',
                 'bower_components/history.js/scripts/bundled/html4+html5/jquery.history.js',
                 'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
@@ -37,8 +36,18 @@ module.exports = function(grunt) {
                     expand: true
                 }, {
                     dest: 'assets/components/',
-                    src: ['kano*', 'iron*'],
+                    src: [
+                        'kano*/**',
+                        'iron*/**',
+                        'webcomponentsjs/**',
+                        'polymer/**'
+                    ],
                     cwd: 'bower_components/',
+                    expand: true
+                }, {
+                    dest: 'assets/images/',
+                    src: ['**'],
+                    cwd: 'src/images/',
                     expand: true
                 }]
             },
@@ -50,8 +59,18 @@ module.exports = function(grunt) {
                     expand: true
                 }, {
                     dest: 'assets/components/',
-                    src: ['kano*', 'iron*'],
+                    src: [
+                        'kano*/**',
+                        'iron*/**',
+                        'webcomponentsjs/**',
+                        'polymer/**'
+                    ],
                     cwd: 'bower_components/',
+                    expand: true
+                }, {
+                    dest: 'assets/images/',
+                    src: ['**'],
+                    cwd: 'src/images/',
                     expand: true
                 }]
             }

@@ -1,11 +1,11 @@
 {
-  "name": "bleak",
-  "version": "1.0.4",
+  "name": "kano-blog",
+  "version": "0.0.1",
   "description": "Ghost Theme",
-  "author": "Peter Amende",
+  "author": "Kano Computing",
   "repository": {
     "type": "git",
-    "url": "git://github.com/zutrinken/bleak.git"
+    "url": "git://github.com/abridger/kano-blog-theme.git"
   },
   "license": "MIT",
   "devDependencies": {
