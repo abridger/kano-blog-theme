@@ -1,5 +1,5 @@
 {
-  "name": "bleak",
+  "name": "kano-blog-theme",
   "dependencies": {
     "kano-nav": "KanoComputing/kano-nav",
     "kano-primary-links": "KanoComputing/kano-primary-links",

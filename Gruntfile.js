@@ -176,7 +176,12 @@ module.exports = function(grunt) {
             }
         },
         zip: {
-            'kano-blog-theme.zip': ['**']
+            'kano-blog-theme.zip': [
+              'assets/**',
+              'partials/**',
+              '*.hbs',
+              '*.json'
+            ]
         }
     });
 
