@@ -30,18 +30,8 @@ module.exports = function(grunt) {
         copy: {
             dev: {
                 files: [{
-                    dest: 'assets/fonts/',
-                    src: '*',
-                    cwd: 'src/fonts/',
-                    expand: true
-                }, {
                     dest: 'assets/components/',
-                    src: [
-                        'kano*/**',
-                        'iron*/**',
-                        'webcomponentsjs/**',
-                        'polymer/**'
-                    ],
+                    src: ['**'],
                     cwd: 'bower_components/',
                     expand: true
                 }, {
@@ -53,18 +43,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: [{
-                    dest: 'assets/fonts/',
-                    src: '*',
-                    cwd: 'src/fonts/',
-                    expand: true
-                }, {
                     dest: 'assets/components/',
-                    src: [
-                        'kano*/**',
-                        'iron*/**',
-                        'webcomponentsjs/**',
-                        'polymer/**'
-                    ],
+                    src: ['**'],
                     cwd: 'bower_components/',
                     expand: true
                 }, {

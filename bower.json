@@ -1,9 +1,7 @@
 {
   "name": "kano-blog-theme",
   "dependencies": {
-    "kano-nav": "KanoComputing/kano-nav",
-    "kano-primary-links": "KanoComputing/kano-primary-links",
-    "kano-secondary-links": "KanoComputing/kano-secondary-links",
+    "web-components": "git@github.com:KanoComputing/web-components.git",
     "iron-image": "PolymerElements/iron-image#^1.2.5"
   },
   "devDependencies": {
